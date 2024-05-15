@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bringing Chuck Norris Jokes from API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #2c3e50; 
+            color: #fff; 
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1); 
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        #chucks {
+            font-style: italic;
+            color: #ccc;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-one {
+            background-image: url('C:\Users\Admin\Pictures\Fantasy-World-3d-HD-Images.jpg'); 
+            background-size: cover; 
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bringing Chuck Norris Jokes from API</h1>
+
+        <label>What's Chuck Norris doing today?</label>
+        <p id="chucks"></p>
+
+        
+        <button onclick="getChuckNorrisJoke()" class="btn btn-one">Get New Joke</button>
+    </div>
+
+    <script>
+        function getChuckNorrisJoke() {
+            fetch('https://api.chucknorris.io/jokes/random?category=food')
+                .then(response => response.json())
+                .then(json => document.getElementById("chucks").innerHTML = json.value)
+                .catch(error => console.log('Unable to reach URL: ' + error));
+        }
+
+        getChuckNorrisJoke();
+    </script>
+</body>
+</html>
